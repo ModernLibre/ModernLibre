@@ -9,8 +9,8 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "camelCase")]
 pub struct Book {
     pub id: i32,
-    pub cover_url: Option<String>,
-    pub title: Option<String>,
+    pub cover_url: String,
+    pub title: String,
     pub author: Option<String>,
     pub rating: Option<f64>,
     pub description: Option<String>,

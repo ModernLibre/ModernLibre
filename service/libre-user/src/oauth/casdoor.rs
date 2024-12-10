@@ -82,15 +82,15 @@ lazy_static::lazy_static!{
 pub struct CasdoorUser {
     pub address: Option<String>,
     pub aud: String,
-    pub email: Option<String>,
+    pub email: Option<String>, // email
     pub email_verified: Option<bool>,
     pub groups: Option<Vec<String>>,
     pub iss: String,
-    pub name: Option<String>,
+    pub name: Option<String>, // login
     pub phone: Option<String>,
     pub picture: Option<String>,
-    pub preferred_username: Option<String>,
-    pub sub: String,
+    pub preferred_username: Option<String>, // name
+    pub sub: String, // casdoor_id
 }
 
 // impl From<CasdoorUser> for models::User {
