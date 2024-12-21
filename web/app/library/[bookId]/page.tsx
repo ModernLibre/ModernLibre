@@ -3,14 +3,16 @@
 import { useBook } from '@/hooks/use-book'
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Download, Star, ArrowLeft } from 'lucide-react'
+import { Download, Star, ArrowLeft, Eye } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 
 export default function BookPage() {
   const params = useParams()
+  const searchParams = useSearchParams()
   const bookId = parseInt(params.bookId as string)
+  const extension = searchParams?.get('extension')
   const { book, loading, error } = useBook(bookId)
 
   if (loading) {
@@ -28,8 +30,8 @@ export default function BookPage() {
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="container max-w-4xl mx-auto">
-        <Link 
-          href="/library" 
+        <Link
+          href="/library"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -64,11 +66,21 @@ export default function BookPage() {
                 <span className="text-lg">{book.rating}</span>
               </div>
             )}
-            <div className="pt-4">
-              <Button className="w-full md:w-auto">
-                <Download className="mr-2 h-4 w-4" />
-                Download Book
-              </Button>
+            <div className="w-[50%] pt-4 flex flex-col space-y-2">
+              <div className="w-full">
+                <Link href={`/reader?extension=${extension}&bookId=${bookId}`} className="block w-full">
+                  <Button className="w-full">
+                    <Eye className="mr-2 h-4 w-4" />
+                    Read Online
+                  </Button>
+                </Link>
+              </div>
+              <div className="w-full">
+                <Button className="w-full">
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Book
+                </Button>
+              </div>
             </div>
           </div>
         </div>
