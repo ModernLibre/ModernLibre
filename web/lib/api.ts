@@ -1,3 +1,4 @@
+import { promises } from 'node:dns';
 import { cache } from 'react';
 
 const TIMEOUT_MS = 5000; // 5 seconds timeout
@@ -118,5 +119,18 @@ export async function prefetchBooks() {
     await fetchBooks();
   } catch (error) {
     console.error('Error prefetching books:', error);
+  }
+}
+
+// fetch book url function
+export async function fetchBookUrl(id : number, extension : string): Promise<any> {
+  try {
+    const response = await fetchWithTimeout(`${window.location.origin}/api/books/download/${id}/${extension}`);
+    const data = await response.json();
+    return data;
+  }
+  catch (error) {
+    console.error('Error fetching book url:', error);
+    throw error;
   }
 }
