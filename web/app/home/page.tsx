@@ -97,9 +97,9 @@ export default function HomePage() {
                   className="flex items-center gap-4 hover:bg-muted p-2 rounded-lg transition-colors"
                 >
                   <div className="w-12 h-16 relative bg-muted rounded overflow-hidden">
-                    {book.coverUrl && (
+                    {book.cover_url && (
                       <img
-                        src={book.coverUrl}
+                        src={book.cover_url}
                         alt={book.title}
                         className="object-cover w-full h-full"
                       />
