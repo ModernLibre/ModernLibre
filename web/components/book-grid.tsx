@@ -13,13 +13,14 @@ interface BookCardProps {
 }
 
 function BookCard({ book }: BookCardProps) {
+  console.log('Book metadata:', book); // 打印书的元信息
   return (
     <Card className="overflow-hidden">
       <Link href={`/library/${book.id}`}>
         <CardContent className="p-0">
           <div className="aspect-[2/3] relative group">
             <Image
-              src={book.coverUrl || '/static/books/none.jpg'}
+              src={book.cover_url || '/static/books/none.jpg'}
               alt={book.title}
               fill
               className="object-cover transition-transform group-hover:scale-105"
@@ -57,8 +58,8 @@ const mockBooks: Book[] = [
     description: "A powerful primer on how design serves as the interface between objects and users",
     rating: 4.9,
     status: 1,
-    coverUrl: "/static/books/design-of-everyday-things.jpg",
-    addedDate: new Date().toISOString()
+    cover_url: "/static/books/design-of-everyday-things.jpg",
+    added_date: new Date().toISOString()
   },
   {
     id: 1002,
@@ -67,8 +68,8 @@ const mockBooks: Book[] = [
     description: "Tiny Changes, Remarkable Results",
     rating: 4.8,
     status: 1,
-    coverUrl: "/static/books/atomic-habits1.jpg",
-    addedDate: new Date().toISOString()
+    cover_url: "/static/books/atomic-habits1.jpg",
+    added_date: new Date().toISOString()
   },
 
   {
@@ -78,8 +79,8 @@ const mockBooks: Book[] = [
     description: "Somthing about deep work",
     rating: 4.7,
     status: 1,
-    coverUrl: "/static/books/deep-work1.jpg",
-    addedDate: new Date().toISOString()
+    cover_url: "/static/books/deep-work1.jpg",
+    added_date: new Date().toISOString()
   },
   {
     id: 1004,
@@ -88,18 +89,18 @@ const mockBooks: Book[] = [
     description: "Somthing about deep work",
     rating: 4.7,
     status: 1,
-    coverUrl: "/static/books/psychology-of-money.jpg",
-    addedDate: new Date().toISOString()
+    cover_url: "/static/books/psychology-of-money.jpg",
+    added_date: new Date().toISOString()
   },
-  {
-    id: 1323,
-    title: "The Rust Programming Language",
-    author: "Steve Klabnik and Carol Nichols",
-    description: "A comprehensive guide to Rust programming.",
-    status: 1,
-    rating: 4.5,
-    addedDate: "2023-11-04T20:48:30"
-  }
+  // {
+  //   id: 1323,
+  //   title: "The Rust Programming Language",
+  //   author: "Steve Klabnik and Carol Nichols",
+  //   description: "A comprehensive guide to Rust programming.",
+  //   status: 1,
+  //   rating: 4.5,
+  //   added_date: "2023-11-04T20:48:30"
+  // }
 ]
 
 export function BookGrid() {

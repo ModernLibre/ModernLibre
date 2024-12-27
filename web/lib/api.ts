@@ -1,5 +1,8 @@
 import { cache } from 'react';
 
+// 试用，后续应该统一配置到环境变量中
+let backendUrl = 'http://localhost:8083';
+
 const TIMEOUT_MS = 5000; // 5 seconds timeout
 
 // Create an in-memory cache for books
@@ -14,6 +17,7 @@ async function fetchWithTimeout(url: string, options: RequestInit = {}) {
   const id = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
   try {
+    console.log('Fetching URL:', url);
     const response = await fetch(url, {
       ...options,
       signal: controller.signal,
@@ -46,7 +50,7 @@ export const fetchBook = cache(async (id: number) => {
   }
 
   try {
-    const response = await fetchWithTimeout(`${window.location.origin}/api/books/details/${id}`);
+    const response = await fetchWithTimeout(backendUrl+`/books/details/${id}`);
     const data = await response.json();
     
     // Update cache
@@ -70,9 +74,9 @@ export const fetchBooks = cache(async () => {
   if (allBooksCache && (now - lastFetchTimestamp) < CACHE_TTL) {
     return allBooksCache;
   }
-
+  
   try {
-    const response = await fetchWithTimeout(`${window.location.origin}/api/books/list`);
+    const response = await fetchWithTimeout(backendUrl+`/books/list`);
     const data = await response.json();
     
     // Update cache
